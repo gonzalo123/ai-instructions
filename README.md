@@ -1,43 +1,36 @@
 # Modular AI Instructions System for GitHub Copilot
 
-A sophisticated framework for managing dynamic, modular coding instructions that can be applied to GitHub Copilot across different projects and programming languages.
+## Usage
 
-## Overview
+```bash
+# Clone the repository and set up the AI instructions
+git clone .ai-instructions 
 
-Instead of maintaining monolithic instruction files for each project, this system provides:
+# generate the initial configuration file from the template
+cp .ai-instructions/config.ini.dist .ai-instructions/config.ini
 
-- **Modular Configuration**: Reusable instruction modules for different technologies
-- **Dynamic Composition**: Combine relevant modules based on project needs
-- **Centralized Management**: Single configuration file controls instruction assembly
-- **Language-Specific Standards**: Comprehensive coding guidelines for multiple languages
+# Edit the configuration file to include your desired instruction modules
 
-## Why This System?
-
-Traditional approaches to AI coding instructions suffer from:
-
-- **Duplication**: Similar instructions repeated across projects
-- **Maintenance Burden**: Updates require changes in multiple files
-- **Context Switching**: Different instruction styles for different projects
-- **Scalability Issues**: Hard to manage as project count grows
-
-This system solves these problems through modular, composable instruction sets.
+# Generate the final instructions file
+./.ai-instructions/bin/apply.sh
+```
 
 ## Architecture
 
 ```
 ai-instructions/
-├── config.ini                 # Configuration file defining active modules
-├── bin/apply.sh               # Script to generate final instructions
-├── common/                    # Reusable instruction modules
-│   ├── general.md            # Universal coding principles
-│   ├── python.md             # Python-specific guidelines
-│   ├── typescript.md         # TypeScript standards
-│   ├── php.md               # PHP best practices
-│   ├── html_css_js.md       # Frontend development
-│   ├── docker.md            # Container guidelines
-│   └── large_files.md       # Complex change protocols
-└── project/                  # Project-specific instructions
-    └── main.md              # Current project customizations
+├── config.ini.dist         # Configuration file template (you should copy it to `config.ini`)
+├── bin/apply.sh            # Script to generate final instructions
+├── common/                 # Reusable instruction modules
+│   ├── general.md          # Universal coding principles
+│   ├── python.md           # Python-specific guidelines
+│   ├── typescript.md       # TypeScript standards
+│   ├── php.md              # PHP best practices
+│   ├── html_css_js.md      # Frontend development
+│   ├── docker.md           # Container guidelines
+│   └── large_files.md      # Complex change protocols
+└── project/                # Project-specific instructions (excluded in `.gitignore`)
+    └── main.md             # Current project customizations (excluded in `.gitignore`)
 ```
 
 ## Configuration System
@@ -55,11 +48,6 @@ common/docker.md
 common/typescript.md
 project/main.md
 ```
-
-### Configuration Sections
-
-- **[COPILOT]**: Defines where the final instruction file will be generated
-- **[CONTEXTS]**: Lists all modules to include, processed in order
 
 ## Instruction Modules
 
@@ -211,15 +199,6 @@ The `bin/apply.sh` script:
 - **Productivity**: Reduce time spent on code reviews
 - **Innovation**: Focus on features, not formatting
 
-## Integration with Development Workflow
-
-This system integrates seamlessly with:
-
-- **GitHub Copilot**: Direct instruction file generation
-- **CI/CD Pipelines**: Automated instruction updates
-- **Project Templates**: Include as part of project scaffolding
-- **IDE Integration**: Works with any Copilot-enabled editor
-
 ## Real-World Example
 
 A typical workflow for a new Python microservice:
@@ -229,30 +208,3 @@ A typical workflow for a new Python microservice:
 3. Run `./bin/apply.sh`
 4. Start coding with AI assistance tailored to your stack
 5. AI suggestions follow your team's established patterns
-
-## Future Enhancements
-
-- **Template system** for rapid module creation
-- **Validation rules** to ensure instruction quality
-- **Module dependencies** for automatic inclusion
-- **Version control** for instruction evolution
-- **Team sharing** through Git submodules or package managers
-
-## Contributing
-
-To extend this system:
-
-1. **Add new language modules** following existing patterns
-2. **Improve existing instructions** based on real-world usage
-3. **Enhance the build system** with additional features
-4. **Share modules** with the community
-
-## Conclusion
-
-This modular instruction system transforms how you work with AI coding assistants. Instead of fighting inconsistent suggestions, you get AI that understands and follows your established patterns, making development faster, more consistent, and more enjoyable.
-
-The investment in setting up this system pays dividends across every project, creating a compound effect that improves over time as you refine and expand your instruction modules.
-
----
-
-*This system has been battle-tested across multiple projects and programming languages, providing consistent, high-quality AI assistance that scales with your development needs.*
