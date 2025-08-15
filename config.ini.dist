@@ -1,0 +1,13 @@
+[COPILOT]
+COPILOT_INSTRUCTION_PATH=".github/copilot-instructions.md"
+
+[CONTEXTS]
+common/general.md
+common/python.md
+#common/docker.md
+#common/php.md
+common/html_css_js.md
+#common/typescript.md
+common/large_files.md
+
+project/main.md

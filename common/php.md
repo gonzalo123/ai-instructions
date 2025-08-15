@@ -1,0 +1,26 @@
+## PHP Requirements
+- **Target Version**: PHP 8.1 or higher
+- **Language**: All comments, docstrings, and variable names MUST be in English
+- **Features to Use**:
+- Named arguments
+- Constructor property promotion
+- Union types and nullable types
+- Match expressions
+- Nullsafe operator (`?->`)
+- Attributes instead of annotations
+- Typed properties with appropriate type declarations
+- Return type declarations
+- Enumerations (`enum`)
+- Readonly properties
+- Emphasize strict property typing in all generated code.
+- **Coding Standards**:
+- Follow PSR-12 coding standards
+- Use strict typing with `declare(strict_types=1);`
+- Prefer composition over inheritance
+- Use dependency injection
+- **Static Analysis:**
+- Include PHPDoc blocks compatible with PHPStan or Psalm for static analysis
+- **Error Handling:**
+- Use exceptions consistently for error handling and avoid suppressing errors.
+- Provide meaningful, clear exception messages and proper exception types.
+- **Comments and Documentation**: All PHPDoc comments, inline comments, and error messages in English
