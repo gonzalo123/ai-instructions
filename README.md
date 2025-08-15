@@ -4,7 +4,7 @@
 
 ```bash
 # Clone the repository and set up the AI instructions
-git clone .ai-instructions 
+git clone https://github.com/gonzalo123/ai-instructions .ai-instructions 
 
 # generate the initial configuration file from the template
 cp .ai-instructions/config.ini.dist .ai-instructions/config.ini
