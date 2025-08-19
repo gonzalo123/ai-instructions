@@ -1,5 +1,5 @@
 [COPILOT]
-COPILOT_INSTRUCTION_PATH=".github/copilot-instructions.md"
+COPILOT_INSTRUCTION_PATH="../.github/copilot-instructions.md"
 
 [CONTEXTS]
 common/general.md
