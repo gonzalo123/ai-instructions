@@ -54,8 +54,13 @@ if command -v realpath &>/dev/null && realpath -m /dev/null &>/dev/null; then
     OUTPUT_FILE=$(realpath -m "$UNSAFE_OUTPUT_PATH")
 else
     # Fallback for systems without realpath or without the '-m' option.
-    echo "Warning: `realpath -m` is not supported. Using a less robust path resolution." >&2
-    OUTPUT_FILE=$(cd "$(dirname "$UNSAFE_OUTPUT_PATH")" && pwd)/$(basename "$UNSAFE_OUTPUT_PATH")
+    echo "Warning: \`realpath -m\` is not supported. Using a less robust path resolution." >&2
+
+    # Create parent directory if it doesn't exist before trying to resolve path
+    PARENT_DIR="$(dirname "$UNSAFE_OUTPUT_PATH")"
+    mkdir -p "$PARENT_DIR"
+
+    OUTPUT_FILE=$(cd "$PARENT_DIR" && pwd)/$(basename "$UNSAFE_OUTPUT_PATH")
 fi
 
 mkdir -p "$(dirname "$OUTPUT_FILE")"
@@ -63,7 +68,7 @@ true > "$OUTPUT_FILE"
 echo "Generating '$OUTPUT_FILE'..."
 
 # --- 4. Loop and concatenate files ---
-while IFS= read -r file; do
+echo "$CONTEXT_FILES" | while IFS= read -r file; do
     file="${file#"${file%%[![:space:]]*}"}" # Trim leading whitespace
     [[ -z "$file" ]] && continue
 
@@ -80,6 +85,6 @@ while IFS= read -r file; do
     else
         echo "⚠️ Warning: The file '$CONTEXT_FILE_PATH' was not found. Skipping." >&2
     fi
-done <<< "$CONTEXT_FILES"
+done
 
 echo "Process completed. '$OUTPUT_FILE' has been updated."
